@@ -87,7 +87,7 @@ export default function Contact() {
       </div>
 
       <div className="mt-24 flex flex-col md:flex-row justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.15em] text-ink-dim">
-        <span>Briam Luis Ronceros Achulli</span>
+        <span>Briam Luis Ronceros Achuli</span>
         <span>Ingeniería de Sistemas — Perú</span>
         <span>Portafolio © {new Date().getFullYear()}</span>
       </div>

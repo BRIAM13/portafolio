@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 const LINE_ONE = "Briam Luis";
-const LINE_TWO = "Ronceros Achulli";
+const LINE_TWO = "Ronceros Achuli";
 
 function KineticLine({
   text,

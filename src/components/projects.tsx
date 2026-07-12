@@ -13,6 +13,7 @@ type Project = {
   description: string;
   tags: string[];
   image: string;
+  demoUrl?: string;
   repoUrl?: string;
 };
 
@@ -26,6 +27,7 @@ const PROJECTS: Project[] = [
       "Sistema de gestión para panadería y corporación, construido en Flutter para Android, iOS y web. Incluye autenticación, dashboard con estadísticas, y un backend propio con base de datos relacional para sostener las operaciones del negocio.",
     tags: ["Flutter", "Dart", "SQL", "Backend propio", "Android / iOS / Web"],
     image: "/projects/panaderia-icon.png",
+    demoUrl: "https://corporacionronceros.vercel.app",
     repoUrl: "https://github.com/BRIAM13/panaderia-app",
   },
 ];
@@ -74,22 +76,41 @@ function ProjectCard({ project }: { project: Project }) {
           ))}
         </div>
 
-        {project.repoUrl && (
-          <Link
-            href={project.repoUrl}
-            target="_blank"
-            rel="noreferrer"
-            data-cursor="hover"
-            className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] mt-8 w-fit"
-          >
-            <span className="text-ink group-hover:text-accent transition-colors">
-              Ver repositorio
-            </span>
-            <span className="text-accent transition-transform group-hover:translate-x-1">
-              →
-            </span>
-          </Link>
-        )}
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-3 mt-8">
+          {project.demoUrl && (
+            <Link
+              href={project.demoUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-cursor="hover"
+              className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] w-fit"
+            >
+              <span className="text-ink group-hover:text-accent transition-colors">
+                Ver demo
+              </span>
+              <span className="text-accent transition-transform group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+          )}
+
+          {project.repoUrl && (
+            <Link
+              href={project.repoUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-cursor="hover"
+              className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] w-fit"
+            >
+              <span className="text-ink-dim group-hover:text-accent transition-colors">
+                Ver código
+              </span>
+              <span className="text-ink-dim transition-transform group-hover:translate-x-1 group-hover:text-accent">
+                →
+              </span>
+            </Link>
+          )}
+        </div>
       </div>
 
       <div className="md:col-span-7 relative">

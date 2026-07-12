@@ -23,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Briam Ronceros — Portafolio",
   description:
-    "Portafolio de Briam Luis Ronceros Achulli, estudiante de Ingeniería de Sistemas. Proyectos de software multiplataforma.",
+    "Portafolio de Briam Luis Ronceros Achuli, estudiante de Ingeniería de Sistemas. Proyectos de software multiplataforma.",
 };
 
 export default function RootLayout({
