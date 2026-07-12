@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portafolio — Briam Luis Ronceros Achulli
 
-## Getting Started
+Sitio personal para mostrar proyectos de desarrollo de software. Construido con Next.js, Tailwind CSS, Framer Motion (animaciones) y Lenis (scroll suave).
 
-First, run the development server:
+## Desarrollo local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Agregar un proyecto nuevo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Los proyectos viven en `src/components/projects.tsx`, dentro del arreglo `PROJECTS`. Para agregar uno, copia un objeto existente y cambia:
 
-## Learn More
+- `index`: siguiente número, ej. `"P.02"`
+- `title`, `role`, `year`, `description`
+- `tags`: tecnologías usadas
+- `image`: ruta dentro de `public/` (agrega el archivo ahí primero)
+- `repoUrl`: link al repositorio (opcional)
 
-To learn more about Next.js, take a look at the following resources:
+## Estructura
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `src/components/hero.tsx` — portada con tipografía cinética
+- `src/components/about.tsx` — perfil / ficha técnica
+- `src/components/projects.tsx` — listado de proyectos
+- `src/components/contact.tsx` — contacto y cierre
+- `src/components/{nav,smooth-scroll,cursor,grain}.tsx` — layout, navegación y efectos globales
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Despliegue en Vercel
 
-## Deploy on Vercel
+1. Sube este proyecto a un repositorio de GitHub.
+2. En [vercel.com/new](https://vercel.com/new), importa el repositorio.
+3. Vercel detecta Next.js automáticamente — no requiere configuración adicional.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+También puedes desplegar desde la terminal con la [Vercel CLI](https://vercel.com/docs/cli):
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm i -g vercel
+vercel
+```
