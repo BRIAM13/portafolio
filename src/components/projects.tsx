@@ -27,7 +27,7 @@ const PROJECTS: Project[] = [
       "Sistema de gestión para panadería y corporación, construido en Flutter para Android, iOS y web. Incluye autenticación, dashboard con estadísticas, y un backend propio con base de datos relacional para sostener las operaciones del negocio.",
     tags: ["Flutter", "Dart", "SQL", "Backend propio", "Android / iOS / Web"],
     image: "/projects/panaderia-icon.png",
-    demoUrl: "https://corporacionronceros.vercel.app",
+    demoUrl: "https://corporacionronceros.vercel.app/app/",
     repoUrl: "https://github.com/BRIAM13/panaderia-app",
   },
 ];
