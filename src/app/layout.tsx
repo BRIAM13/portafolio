@@ -5,6 +5,7 @@ import SmoothScroll from "@/components/smooth-scroll";
 import Cursor from "@/components/cursor";
 import Grain from "@/components/grain";
 import Nav from "@/components/nav";
+import BootSequence from "@/components/boot-sequence";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -35,6 +36,7 @@ export default function RootLayout({
     <html lang="es" className={`${fraunces.variable} ${jetbrainsMono.variable} h-full antialiased`}>
       <body className="min-h-full bg-graphite text-ink">
         <SmoothScroll>
+          <BootSequence />
           <Grain />
           <Cursor />
           <Nav />

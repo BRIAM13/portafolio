@@ -26,11 +26,15 @@ const PROJECTS: Project[] = [
     description:
       "Sistema de gestión para panadería y corporación, construido en Flutter para Android, iOS y web. Incluye autenticación, dashboard con estadísticas, y un backend propio con base de datos relacional para sostener las operaciones del negocio.",
     tags: ["Flutter", "Dart", "SQL", "Backend propio", "Android / iOS / Web"],
-    image: "/projects/panaderia-icon.png",
+    image: "/projects/panaderia-login.png",
     demoUrl: "https://corporacionronceros.vercel.app/app/",
     repoUrl: "https://github.com/BRIAM13/panaderia-app",
   },
 ];
+
+function urlLabel(url: string) {
+  return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+}
 
 function ProjectCard({ project }: { project: Project }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -114,23 +118,34 @@ function ProjectCard({ project }: { project: Project }) {
       </div>
 
       <div className="md:col-span-7 relative">
-        <div className="relative aspect-[4/3] overflow-hidden bg-graphite-raised">
-          <motion.div style={{ y: imageY }} className="absolute inset-0 -m-8">
-            <Image
-              src={project.image}
-              alt={`Ícono de la app ${project.title}`}
-              fill
-              sizes="(min-width: 768px) 55vw, 100vw"
-              priority
-              className="object-contain p-16 opacity-90"
-            />
-          </motion.div>
+        <div className="rounded-md border border-line overflow-hidden bg-graphite-raised shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)]">
+          <div className="flex items-center gap-4 px-4 py-2.5 border-b border-line">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-line" />
+              <span className="w-2 h-2 rounded-full bg-line" />
+              <span className="w-2 h-2 rounded-full bg-line" />
+            </div>
+            {project.demoUrl && (
+              <div className="flex-1 flex justify-center">
+                <span className="font-mono text-[10px] tracking-[0.08em] text-ink-dim px-3 py-1 rounded-full border border-line truncate max-w-[85%]">
+                  {urlLabel(project.demoUrl)}
+                </span>
+              </div>
+            )}
+          </div>
 
-          {/* corner brackets */}
-          <span className="absolute top-3 left-3 w-5 h-5 border-t border-l border-accent" />
-          <span className="absolute top-3 right-3 w-5 h-5 border-t border-r border-accent" />
-          <span className="absolute bottom-3 left-3 w-5 h-5 border-b border-l border-accent" />
-          <span className="absolute bottom-3 right-3 w-5 h-5 border-b border-r border-accent" />
+          <div className="relative aspect-[8/5] overflow-hidden">
+            <motion.div style={{ y: imageY }} className="absolute inset-0 -m-8">
+              <Image
+                src={project.image}
+                alt={`Captura de la app ${project.title}`}
+                fill
+                sizes="(min-width: 768px) 55vw, 100vw"
+                priority
+                className="object-cover object-top"
+              />
+            </motion.div>
+          </div>
         </div>
       </div>
     </motion.div>

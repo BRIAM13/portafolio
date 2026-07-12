@@ -17,16 +17,32 @@ export default function Cursor() {
     let targetY = ringY;
     let raf = 0;
 
+    const MAGNET_PULL = 0.35;
+
     const onMove = (e: PointerEvent) => {
-      targetX = e.clientX;
-      targetY = e.clientY;
-      dot.style.transform = `translate(${targetX}px, ${targetY}px) translate(-50%, -50%)`;
+      dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
 
       const target = e.target as HTMLElement;
-      const isInteractive = !!target.closest("a, button, [data-cursor='hover']");
-      ring.style.width = isInteractive ? "56px" : "32px";
-      ring.style.height = isInteractive ? "56px" : "32px";
-      ring.style.borderColor = isInteractive ? "var(--accent)" : "var(--ink-dim)";
+      const interactiveEl = target.closest(
+        "a, button, [data-cursor='hover']"
+      ) as HTMLElement | null;
+
+      if (interactiveEl) {
+        const rect = interactiveEl.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        targetX = e.clientX + (cx - e.clientX) * MAGNET_PULL;
+        targetY = e.clientY + (cy - e.clientY) * MAGNET_PULL;
+        ring.style.width = "56px";
+        ring.style.height = "56px";
+        ring.style.borderColor = "var(--accent)";
+      } else {
+        targetX = e.clientX;
+        targetY = e.clientY;
+        ring.style.width = "32px";
+        ring.style.height = "32px";
+        ring.style.borderColor = "var(--ink-dim)";
+      }
     };
 
     const tick = () => {
