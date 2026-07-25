@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import BrowserFrame from "./browser-frame";
+import FeaturedProject from "./featured-project";
 
 type Project = {
   index: string;
@@ -19,7 +19,7 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
-    index: "P.01",
+    index: "P.02",
     title: "Corporación Ronceros",
     role: "App de gestión multiplataforma",
     year: "2026",
@@ -37,16 +37,8 @@ function urlLabel(url: string) {
 }
 
 function ProjectCard({ project }: { project: Project }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
-
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
@@ -118,35 +110,13 @@ function ProjectCard({ project }: { project: Project }) {
       </div>
 
       <div className="md:col-span-7 relative">
-        <div className="rounded-md border border-line overflow-hidden bg-graphite-raised shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)]">
-          <div className="flex items-center gap-4 px-4 py-2.5 border-b border-line">
-            <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-line" />
-              <span className="w-2 h-2 rounded-full bg-line" />
-              <span className="w-2 h-2 rounded-full bg-line" />
-            </div>
-            {project.demoUrl && (
-              <div className="flex-1 flex justify-center">
-                <span className="font-mono text-[10px] tracking-[0.08em] text-ink-dim px-3 py-1 rounded-full border border-line truncate max-w-[85%]">
-                  {urlLabel(project.demoUrl)}
-                </span>
-              </div>
-            )}
-          </div>
-
-          <div className="relative aspect-[8/5] overflow-hidden">
-            <motion.div style={{ y: imageY }} className="absolute inset-0 -m-8">
-              <Image
-                src={project.image}
-                alt={`Captura de la app ${project.title}`}
-                fill
-                sizes="(min-width: 768px) 55vw, 100vw"
-                priority
-                className="object-cover object-top"
-              />
-            </motion.div>
-          </div>
-        </div>
+        <BrowserFrame
+          src={project.image}
+          alt={`Captura de la app ${project.title}`}
+          label={project.demoUrl ? urlLabel(project.demoUrl) : project.title}
+          aspectClassName="aspect-[8/5]"
+          sizes="(min-width: 768px) 55vw, 100vw"
+        />
       </div>
     </motion.div>
   );
@@ -166,11 +136,12 @@ export default function Projects() {
           02 — Proyectos
         </span>
         <span className="font-mono text-xs tracking-[0.2em] uppercase text-ink-dim">
-          {String(PROJECTS.length).padStart(2, "0")} registrados
+          {String(PROJECTS.length + 1).padStart(2, "0")} registrados
         </span>
       </motion.div>
 
       <div className="mt-6">
+        <FeaturedProject />
         {PROJECTS.map((project) => (
           <ProjectCard key={project.index} project={project} />
         ))}
