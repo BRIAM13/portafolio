@@ -1,12 +1,13 @@
 const ITEMS = [
+  "Kotlin",
+  "Jetpack Compose",
   "Flutter",
-  "Dart",
+  "Angular",
+  "React Native",
   "TypeScript",
-  "React",
-  "Next.js",
+  "Ktor",
   "SQL",
   "Node.js",
-  "Firebase",
 ];
 
 export default function Marquee() {

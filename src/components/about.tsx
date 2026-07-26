@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const SPECS = [
   { label: "Formación", value: "Ing. de Sistemas — en curso" },
   { label: "Enfoque", value: "Apps multiplataforma & backend" },
-  { label: "Stack", value: "Flutter · Dart · TypeScript · SQL" },
+  { label: "Stack", value: "Kotlin · Flutter · Angular · TypeScript · SQL" },
   { label: "Base", value: "Perú" },
 ];
 
@@ -51,9 +51,11 @@ export default function About() {
           </p>
           <p className="text-ink-dim leading-relaxed text-base md:text-lg mt-4">
             Actualmente desarrollo{" "}
-            <span className="text-ink">Corporación Ronceros</span>, una
-            aplicación de gestión multiplataforma construida con Flutter,
-            con su propio backend y base de datos.
+            <span className="text-ink">FieldSync</span>, un ecosistema
+            offline-first para técnicos de campo (Android, Angular, React
+            Native y backend propio en Ktor), y{" "}
+            <span className="text-ink">Corporación Ronceros</span>, un
+            sistema de gestión multiplataforma construido con Flutter.
           </p>
         </motion.div>
 

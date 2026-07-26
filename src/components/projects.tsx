@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import BrowserFrame from "./browser-frame";
-import FeaturedProject from "./featured-project";
 
 type Project = {
   index: string;
@@ -13,11 +12,32 @@ type Project = {
   description: string;
   tags: string[];
   image: string;
+  imageAspect?: string;
   demoUrl?: string;
   repoUrl?: string;
 };
 
 const PROJECTS: Project[] = [
+  {
+    index: "P.01",
+    title: "FieldSync",
+    role: "SaaS de gestión de tareas para técnicos de campo — offline-first",
+    year: "2026",
+    description:
+      "Ecosistema de gestión para técnicos de campo: app Android offline-first (Kotlin, Clean Architecture + MVVM, WorkManager) para el técnico, panel de despacho y portal de cliente en Angular, app de seguimiento en tiempo real en React Native, y un backend Ktor compartido con autenticación JWT multi-tenant.",
+    tags: [
+      "Kotlin",
+      "Clean Architecture",
+      "WorkManager",
+      "Angular",
+      "React Native",
+      "Ktor",
+    ],
+    image: "/projects/fieldsync/web-login.png",
+    imageAspect: "aspect-[1568/737]",
+    demoUrl: "https://getfieldsync.vercel.app",
+    repoUrl: "https://github.com/BRIAM13/fieldsync-saas",
+  },
   {
     index: "P.02",
     title: "Corporación Ronceros",
@@ -114,7 +134,7 @@ function ProjectCard({ project }: { project: Project }) {
           src={project.image}
           alt={`Captura de la app ${project.title}`}
           label={project.demoUrl ? urlLabel(project.demoUrl) : project.title}
-          aspectClassName="aspect-[8/5]"
+          aspectClassName={project.imageAspect ?? "aspect-[8/5]"}
           sizes="(min-width: 768px) 55vw, 100vw"
         />
       </div>
@@ -136,12 +156,11 @@ export default function Projects() {
           02 — Proyectos
         </span>
         <span className="font-mono text-xs tracking-[0.2em] uppercase text-ink-dim">
-          {String(PROJECTS.length + 1).padStart(2, "0")} registrados
+          {String(PROJECTS.length).padStart(2, "0")} registrados
         </span>
       </motion.div>
 
       <div className="mt-6">
-        <FeaturedProject />
         {PROJECTS.map((project) => (
           <ProjectCard key={project.index} project={project} />
         ))}
